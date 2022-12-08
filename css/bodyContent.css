@@ -1,0 +1,707 @@
+.cLabel {
+    position: absolute;
+    left: 30px;
+    top: 25px;
+    z-index: 2;
+
+    font-weight: 600;
+    font-size: 25px;
+
+    pointer-events: none;
+
+    color: white;
+    text-shadow: 0 0 3px #000000;
+}
+
+.content {
+    position: absolute;
+    box-sizing: border-box;
+    right: 0;
+    bottom: 0;
+
+    overflow: hidden;
+
+    background-color: var(--page-background);
+    border-top-left-radius: 6px;
+    border-top: 1px solid var(--page-border);
+    border-left: 1px solid var(--page-border);
+
+    width: calc(100vw - 75px);
+    height: calc(100vh - 50px);
+}
+
+.cSpotlight {
+    width: 100%;
+    height: 70%;
+
+    position: relative;
+}
+
+.reArea {
+    width: 30%;
+    aspect-ratio: 1/1;
+
+    border-radius: 50%;
+    transform: translate(-65%, -60%);
+
+    position: absolute;
+    z-index: 1;
+
+    background-color: rgba(255, 255, 255, 0.2);
+    filter: blur(80px);
+
+    transition: opacity 1s;
+}
+
+.csImage {
+    width: 100%;
+    height: 100%;
+
+    background: center/cover no-repeat var(--page-background);
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, black 15%);
+    mask-image: linear-gradient(to top, transparent 0%, black 15%);
+}
+
+.chBoardwalk {
+    scroll-behavior: smooth;
+    display: flex;
+    gap: 13px;
+
+    width: 100%;
+    height: fit-content;
+
+    padding: 15px;
+
+    position: absolute;
+    z-index: 2;
+    bottom: -50px;
+
+    overflow-y: hidden;
+    overflow-x: scroll;
+
+    scrollbar-width: none;
+}
+
+.chbTile {
+    box-sizing: border-box;
+    position: relative;
+
+    overflow: hidden;
+
+    min-width: 220px;
+    height: 130px;
+
+    border-radius: 10px;
+
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    transition: transform .2s;
+}
+
+.chbTile:last-of-type {
+    margin-right: 25px;
+}
+
+.chbTile::after {
+    content: attr(data-chbtSiteName);
+
+    font-size: 12px;
+    font-weight: 600;
+
+    color: white;
+    opacity: 0;
+
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+
+    transition: left .3s, font-size .2s, opacity .4s;
+
+    z-index: 3;
+}
+
+.chbTile:hover::after {
+    left: 15px;
+    opacity: 1;
+    font-size: 15px;
+}
+
+.chbTile:hover .chbGrad {
+    left: 0;
+    opacity: 1;
+}
+
+.chbTile:hover {
+    transform: scale(1.03);
+}
+
+.chbGrad {
+    position: absolute;
+    bottom: 0;
+    left: -100%;
+
+    opacity: 0;
+
+    width: 100%;
+    height: 100%;
+
+    transition: opacity .2s, left .2s;
+
+    background: linear-gradient(-90deg, transparent, rgba(0, 0, 0, .8));
+}
+
+.chbTileIconBlur {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    position: absolute;
+
+    z-index: 1;
+
+    filter: blur(40px) contrast(2) brightness(1);
+    opacity: 0.5;
+    transform: scale(1.3);
+    backdrop-filter: blur(10px);
+}
+
+.chbTileIcon {
+    position: relative;
+    z-index: 2;
+    height: 80px;
+    filter: drop-shadow(0px 2px 5px #0004);
+
+    border-radius: 8px;
+}
+
+.chbTileCustom {
+    background-color: #fffa;
+    backdrop-filter: blur(20px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0px 2px 8px #0004);
+}
+
+.scrollBtn {
+    width: 20px;
+    height: 40px;
+
+    background-color: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(10px);
+    border-radius: 4px;
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    position: fixed;
+    bottom: 29%;
+    z-index: 2;
+
+    font-family: FLNTFILL;
+
+    transition: transform .2s;
+}
+
+.scrollBtn:hover {
+    transform: scale(1.07);
+}
+
+.sbEnd {
+    left: 80px;
+}
+
+.sbEnd::after {
+    content: ""
+}
+
+.sbStart {
+    right: 10px;
+}
+
+.sbStart::after {
+    content: ""
+}
+
+/* First visit experience */
+
+.firstVisitSetup {
+    width: 100vw;
+    height: 100vh;
+
+    display: none;
+
+    padding: 3em;
+
+    position: absolute;
+    z-index: 1000;
+
+    background-color: var(--page-background);
+    color: var(--font-color-2);
+}
+
+.iHead {
+    font-weight: 600;
+    font-size: 40px;
+}
+
+.iSubhead {
+    font-size: 30px;
+    opacity: .8;
+}
+
+.iSubhead2 {
+    margin-top: 7px;
+}
+
+.fvsIntro {
+    margin-bottom: 40px;
+}
+
+.fvsSect {
+    width: calc(100% - 8em);
+    height: fit-content;
+
+    border: 1px solid var(--modal-section-border);
+    border-radius: 5px;
+
+    padding: 1em;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.fvsSect .spwcsTitle {
+    font-size: 20px;
+}
+
+.fvsSect .spwcsTitle span {
+    opacity: 1;
+    display: block;
+    position: unset;
+    transform: none;
+    transition: none;
+
+    width: fit-content;
+    padding: 0;
+}
+
+#fsw1 {
+    font-size: 15px;
+}
+
+#fsw2 {
+    margin-bottom: 15px;
+    margin-top: 6px;
+
+    opacity: .5;
+}
+
+/* Settings Window */
+
+.settingsPanel {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    z-index: -100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spBackdrop {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    z-index: 49;
+
+    background-color: rgba(0, 0, 0, 0.5);
+
+    opacity: 0;
+
+    transition: opacity .1s;
+}
+
+.spWindow {
+    width: 70%;
+    min-width: 550px;
+    max-width: 700px;
+    height: fit-content;
+
+    position: absolute;
+    z-index: 50;
+
+    transform: scale(.8);
+    opacity: 0;
+
+    background-color: var(--modal-back);
+    backdrop-filter: blur(20px);
+    border-radius: 6px;
+
+    transition: transform .2s, opacity .2s;
+
+    color: var(--font-color-2)
+}
+
+.spCloseBtn {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 5px;
+
+    background-color: var(--button-semitransp);
+    backdrop-filter: blur(5px);
+
+    cursor: pointer;
+
+    font-family: FLNTREG;
+    font-size: 20px;
+    color: var(--font-color-2);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    right: -8%;
+    z-index: 50;
+}
+
+/* Settings - Meta */
+
+.spwcAppTitle {
+    font-weight: 600;
+    font-size: 19px;
+
+    padding: 10px 20px;
+
+    display: flex;
+    align-items: center;
+
+    width: 90%;
+    height: 50px;
+}
+
+.spwcAppTitle p {
+    padding-left: 7px;
+
+    font-size: 14px;
+    opacity: .7;
+}
+
+.spwcSection {
+    width: 90%;
+    height: fit-content;
+
+    border-radius: 5px;
+    border: 1px solid var(--modal-section-border);
+
+    margin: 0 auto;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.spwcsTitle {
+    margin-inline: 0;
+    margin-block: 0;
+
+    font-size: 15px;
+    font-weight: 500;
+    opacity: .8;
+}
+
+/* Settings - Splash Image */
+
+.siOptions {
+    display: flex;
+    flex-direction: column;
+    margin-top: 7px;
+}
+
+#siUnsplashTags {
+    width: 20ch;
+    height: 20px;
+
+    margin: 7px 3px;
+    padding-left: 7px;
+
+    border: 1px solid var(--search-border);
+    border-bottom: 1px solid var(--search-border-bottom);
+    color: var(--search-font-focus);
+
+    font-family: 'Segoe UI';
+
+    outline: none;
+    border-radius: 5px;
+
+    background-color: var(--search-back);
+}
+
+#siUnsplashTags:focus {
+    border-bottom: 2px solid var(--accent-color-1);
+}
+
+/* Settings - Accent Color */
+
+.accColors {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.acpSelected {
+    border: 3px solid rgb(123, 123, 123);
+}
+
+.container {
+    cursor: pointer;
+    user-select: none;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: relative;
+    width: 25px;
+    height: 25px;
+    background-color: rgb(97, 97, 97);
+    border-radius: 4px;
+
+    border: 2px solid transparent;
+}
+
+.container:hover input~.checkmark {
+    border: 2px solid var(--font-color-2);
+}
+
+.container input:checked~.checkmark {
+    border: 2px solid var(--font-color-2);
+}
+
+/* Settings - Personal Info */
+
+.piTextBox {
+    width: 23ch;
+    height: 20px;
+
+    margin: 5px 0;
+    padding-left: 7px;
+
+    border: 1px solid var(--search-border);
+    border-bottom: 1px solid var(--search-border-bottom);
+    color: var(--search-font-focus);
+
+    font-family: 'Segoe UI';
+
+    outline: none;
+    border-radius: 5px;
+
+    background-color: var(--search-back);
+}
+
+.piTextBox:focus {
+    border-bottom: 2px solid var(--accent-color-1);
+}
+
+.spwcsPersonalInfo .spwcsTitle {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.spwcsPersonalInfo .spwcsTitle::after {
+    content: "";
+    font-family: FLNTREG;
+    opacity: .5;
+    margin-left: 5px;
+}
+
+.spwcsTitle span {
+    background-color: var(--button-semitransp);
+    backdrop-filter: blur(8px);
+
+    transform: scale(.7);
+    transform-origin: top left;
+    opacity: 0;
+
+    transition: .2s opacity .5s, .1s transform .5s;
+
+    font-size: 12px;
+    font-weight: 400;
+
+    position: absolute;
+    left: 102%;
+    user-select: none;
+
+    width: 200px;
+    padding: 6px 10px;
+
+    border-radius: 5px;
+}
+
+.spwcsTitle:hover span {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.spwcsSubtitle {
+    position: absolute;
+    right: 35px;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    user-select: none;
+    opacity: 0;
+
+    transition: opacity .2s;
+}
+
+.spwcsPersonalInfo label {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* New Tile modal */
+
+.spwcsNTPrev,
+.spwcsNTSpecs {
+    width: 270px !important;
+    margin: 10px 15px;
+}
+
+.spwcsNTSpecs {
+    margin-top: 0;
+}
+
+.spwcsNTPrev {
+    margin-bottom: 0;
+}
+
+#spWindowNT {
+    min-width: 200px !important;
+    width: fit-content;
+    height: fit-content;
+}
+
+#ntWindowTitle {
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+    padding: 5px 20px;
+}
+
+#ntWindowClose {
+    right: -50px;
+}
+
+.ntTitle {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.newTileName {
+    margin-top: 3px;
+}
+
+.newTileTextbox {
+    width: 23ch;
+    height: 23px;
+
+    margin: 0;
+    padding-left: 5px;
+
+    border: 1px solid var(--search-border);
+    border-bottom: 1px solid var(--search-border-bottom);
+    color: var(--search-font-focus);
+
+    font-family: 'Segoe UI';
+
+    outline: none;
+    border-radius: 5px;
+
+    background-color: var(--search-back);
+}
+
+.newTileTextbox:focus {
+    border-bottom: 2px solid var(--accent-color-1);
+}
+
+#ntURL {
+    width: 35ch;
+}
+
+.ntActionBtn {
+    border: 1px solid var(--search-border);
+    border-radius: 5px;
+    background-color: var(--button-rest);
+    color: var(--font-color-2);
+
+    padding: 7px 12px;
+
+    font-family: 'Segoe UI';
+    font-weight: 500;
+
+    margin-left: auto;
+    margin-top: 10px;
+
+    transition: background-color .1s;
+}
+
+.ntActionBtn:hover {
+    background-color: var(--button-hover);
+}
+
+.ntActionBtn::after {
+    content: attr(data-ntBtnLbl);
+}
+
+#ntCommitTile {
+    background-color: var(--button-accent-rest);
+    color: white;
+}
+
+#ntCommitTile:hover {
+    background-color: var(--button-accent-hover);
+}
+
+#ntCancelAdd {
+    font-weight: 400;
+}
+
+.chbTilePreview {
+    margin-top: 10px;
+}
+
+.spwcsNTPrev span {
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+.ntActionBtns {
+    margin-left: auto;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    width: fit-content;
+}
